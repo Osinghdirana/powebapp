@@ -9,18 +9,22 @@ namespace powebapp.Pages
     {
         private readonly ILogger<IndexModel> _logger;
         public List<Product> Products;
+        public IProductService _productService;
 
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(ILogger<IndexModel> logger, IProductService productService)
         {
             _logger = logger;
-            Products = new List<Product>();
+            //Products = new List<Product>();
+            _productService = productService;
         }
 
         public void OnGet()
         {
-            ProductService productService = new ProductService();
-            Products = productService.GetProducts();
+            //ProductService productService = new ProductService();
+            //Products = productService.GetProducts();
+
+            Products = _productService.GetProducts();
         }
     }
 }
