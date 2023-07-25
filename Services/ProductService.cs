@@ -5,29 +5,29 @@ namespace PurchaseOrderExtraction.Services
 {
     public class ProductService : IProductService
     {
-        //private static string db_source = "poserver1.database.windows.net";
-        //private static string db_name = "podb";
-        //private static string db_userid = "sqlAdmin";
-        //private static string db_password = "Mitsui@123";
+        private static string db_source = "poserver1.database.windows.net";
+        private static string db_name = "podb";
+        private static string db_userid = "sqlAdmin";
+        private static string db_password = "Mitsui@123";
 
-        private readonly IConfiguration _configuration;
+        //private readonly IConfiguration _configuration;
 
-        public ProductService(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
+        //public ProductService(IConfiguration configuration)
+        //{
+        //    _configuration = configuration;
+        //}
 
         //Get Connection
         private SqlConnection GetConnection()
         {
-            //var _builder = new SqlConnectionStringBuilder();
-            //_builder.DataSource = db_source;
-            //_builder.UserID = db_userid;
-            //_builder.Password = db_password;
-            //_builder.InitialCatalog = db_name;
-            //return new SqlConnection(_builder.ConnectionString);
+            var _builder = new SqlConnectionStringBuilder();
+            _builder.DataSource = db_source;
+            _builder.UserID = db_userid;
+            _builder.Password = db_password;
+            _builder.InitialCatalog = db_name;
+            return new SqlConnection(_builder.ConnectionString);
 
-            return new SqlConnection(_configuration.GetConnectionString("SQLConnection"));
+            //return new SqlConnection(_configuration.GetConnectionString("SQLConnection"));
         }
 
         public List<Product> GetProducts()
