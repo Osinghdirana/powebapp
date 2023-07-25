@@ -14,7 +14,7 @@ namespace powebapp.Pages
         public IndexModel(IProductService productService)
         {
             //_logger = logger;
-            //_products = new List<Product>();
+            _products = new List<Product>();
             _productService = productService;
         }
 
