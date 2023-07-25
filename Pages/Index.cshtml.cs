@@ -20,10 +20,10 @@ namespace powebapp.Pages
 
         public void OnGet()
         {
-            ProductService productService = new ProductService();
-            _products = productService.GetProducts();
+            //ProductService productService = new ProductService();
+            //_products = productService.GetProducts();
 
-            //_products = _productService.GetProducts();
+            _products = _productService.GetProducts();
         }
     }
 }
