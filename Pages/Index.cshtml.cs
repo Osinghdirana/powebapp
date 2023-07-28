@@ -7,15 +7,15 @@ namespace powebapp.Pages
 {
     public class IndexModel : PageModel
     {
-        public List<Product> _products;        
-        public readonly IProductService _productService;
+        //public List<Product> _products;        
+        //public readonly IProductService _productService;
 
 
         public IndexModel(IProductService productService)
         {
             //_logger = logger;
             //_products = new List<Product>();
-            _productService = productService;
+            //_productService = productService;
         }
 
         public void OnGet()
@@ -23,7 +23,7 @@ namespace powebapp.Pages
             //ProductService productService = new ProductService();
             //_products = productService.GetProducts();
 
-            _products = _productService.GetProducts();
+            //_products = _productService.GetProducts();
         }
     }
 }
