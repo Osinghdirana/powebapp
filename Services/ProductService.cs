@@ -27,7 +27,8 @@ namespace PurchaseOrderExtraction.Services
             //_builder.InitialCatalog = db_name;
             //return new SqlConnection(_builder.ConnectionString);
 
-            return new SqlConnection(_configuration.GetConnectionString("SQLConnection"));
+            //return new SqlConnection(_configuration.GetConnectionString("SQLConnection"));
+            return new SqlConnection(_configuration?["SQLConnection"]);
         }
 
         public List<Product> GetProducts()
