@@ -2,6 +2,14 @@ using PurchaseOrderExtraction.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var connectionString = "Endpoint=https://sparazureappconfiguration.azconfig.io;Id=pxaw;Secret=lyqaGI2Fm2qmR/W+2JJjeGWtI54lwCHzDk4q92n75CQ=";
+
+builder.Host.ConfigureAppConfiguration(builder =>
+{
+    builder.AddAzureAppConfiguration(connectionString);
+});
+
+
 builder.Services.AddTransient<IProductService, ProductService>();
 
 // Add services to the container.
