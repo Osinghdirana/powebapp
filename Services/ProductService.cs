@@ -1,4 +1,5 @@
-﻿using PurchaseOrderExtraction.Models;
+﻿using Microsoft.FeatureManagement;
+using PurchaseOrderExtraction.Models;
 using System.Data.SqlClient;
 
 namespace PurchaseOrderExtraction.Services
@@ -11,15 +12,17 @@ namespace PurchaseOrderExtraction.Services
         //private static string db_password = "Mitsui@123";
 
         private readonly IConfiguration? _configuration;
+        private readonly IFeatureManager _featureManager;
 
-        public ProductService(IConfiguration configuration)
+        public ProductService(IConfiguration configuration, IFeatureManager featureManager)
         {
             _configuration = configuration;
+            _featureManager = featureManager;
         }
 
         //Get Connection
         private SqlConnection GetConnection()
-        {
+        {   
             //var _builder = new SqlConnectionStringBuilder();
             //_builder.DataSource = db_source;
             //_builder.UserID = db_userid;
@@ -29,6 +32,18 @@ namespace PurchaseOrderExtraction.Services
 
             //return new SqlConnection(_configuration.GetConnectionString("SQLConnection"));
             return new SqlConnection(_configuration?["SQLConnection"]);
+        }
+
+        public async Task<bool> IsBeta()
+        {
+            if (await _featureManager.IsEnabledAsync("beta"))
+            { 
+                return true; 
+            }
+            else
+            { 
+                return false; 
+            }
         }
 
         public List<Product> GetProducts()

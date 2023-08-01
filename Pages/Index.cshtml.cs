@@ -9,6 +9,7 @@ namespace powebapp.Pages
     {
         public List<Product> _products;        
         public readonly IProductService _productService;
+        public bool _isBeta;
 
 
         public IndexModel(IProductService productService)
@@ -22,7 +23,7 @@ namespace powebapp.Pages
         {
             //ProductService productService = new ProductService();
             //_products = productService.GetProducts();
-
+            _isBeta = _productService.IsBeta().Result;
             _products = _productService.GetProducts();
         }
     }
